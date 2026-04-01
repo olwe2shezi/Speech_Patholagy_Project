@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 55160db26981422488d0932070b59dcb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - animator: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - coughSound: {fileID: 8300000, guid: ff53412dcf0988647b538d4195ed7515, type: 3}
+  - crySound: {fileID: 8300000, guid: 11ad0e2f32f9fcb40b72b60f3a894eef, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
