@@ -2804,7 +2804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BabyController
   audioSource: {fileID: 1343852193}
-  swallowSound: {fileID: 8300000, guid: cc44cbfe3a70a8b4c979575b765ab8a2, type: 3}
+  swallowSound: {fileID: 8300000, guid: ea8d9193d2d538b40891b3920e7e0530, type: 3}
   coughSound: {fileID: 8300000, guid: ff53412dcf0988647b538d4195ed7515, type: 3}
   crySound: {fileID: 8300000, guid: d203256118621e7418f96c324c0dac6b, type: 3}
   spo2: 97
