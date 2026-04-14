@@ -12,6 +12,7 @@ public class BabyController : MonoBehaviour
     public float spo2 = 97f;
     public float dropRate = 4f;
     public float recoverRate = 6f;
+    public float normalSpo2 = 98f;
 
     private bool isCrying = false;
     private bool canBeSoothed = false;
@@ -20,7 +21,7 @@ public class BabyController : MonoBehaviour
 
     void Update()
     {
-        // SpO2 only drops during active crying
+        // SpO2 drops ONLY during crying
         if (isCrying && spo2 > 70f)
         {
             spo2 -= dropRate * Time.deltaTime;
@@ -32,11 +33,7 @@ public class BabyController : MonoBehaviour
     // =========================
     public void FeedBaby()
     {
-        if (isInCrisis) return; // prevent restart while already active
-
-        StartCoroutine(FeedingSequence());
-
-        if (hasBeenFed) return;
+        if (isInCrisis || hasBeenFed) return;
 
         hasBeenFed = true;
         StartCoroutine(FeedingSequence());
@@ -52,7 +49,7 @@ public class BabyController : MonoBehaviour
         audioSource.Play();
         yield return new WaitForSeconds(swallowSound.length);
 
-        // Cough (no spo2 drop yet)
+        // Cough
         audioSource.clip = coughSound;
         audioSource.loop = true;
         audioSource.Play();
@@ -64,7 +61,7 @@ public class BabyController : MonoBehaviour
     }
 
     // =========================
-    // CRYING PHASE
+    // CRYING
     // =========================
     void StartCrying()
     {
@@ -85,13 +82,15 @@ public class BabyController : MonoBehaviour
     }
 
     // =========================
-    // SOOTHING
+    // SOOTHING (VR CLICK)
     // =========================
-
-
-    public void StopCrying()
+    public void SootheBaby()
     {
-        if (!isCrying) return;
+        if (!isCrying)
+        {
+            Debug.Log("Baby is not crying");
+            return;
+        }
 
         if (!canBeSoothed)
         {
@@ -99,7 +98,7 @@ public class BabyController : MonoBehaviour
             return;
         }
 
-        Debug.Log("Baby soothed");
+        Debug.Log("Baby soothed successfully");
 
         isCrying = false;
         canBeSoothed = false;
@@ -111,11 +110,13 @@ public class BabyController : MonoBehaviour
 
     IEnumerator RecoverSpo2()
     {
-        while (spo2 < 95f)
+        while (spo2 < normalSpo2)
         {
             spo2 += recoverRate * Time.deltaTime;
             yield return null;
         }
+
+        spo2 = normalSpo2;
     }
 }
 

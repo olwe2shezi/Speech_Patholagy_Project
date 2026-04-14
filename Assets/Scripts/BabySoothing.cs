@@ -1,16 +1,15 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class BabySoothing : MonoBehaviour
 {
     public BabyController baby;
 
-    private void OnTriggerEnter(Collider other)
+    public void OnSoothing()
     {
-        if (other.CompareTag("Hand"))
+        if (baby != null)
         {
-            Debug.Log("Hand touching baby");
-
-            baby.StopCrying();
+            baby.SootheBaby();
         }
     }
 }
